@@ -1,0 +1,10 @@
+#!/bin/bash
+ledPin=$1
+if [ $# -eq 1 ];then
+	colecho "Turn on LED $ledPin" $OK
+	/opt/piget/leds/bin/onoff $ledPin 1
+else
+	errorBox "Choose a wPi pin"
+	gpio readall
+	exit 1
+fi
