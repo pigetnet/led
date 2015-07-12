@@ -2,7 +2,7 @@
 ledPin=$1
 if [ $# -eq 1 ];then
         colecho "Blink LED $ledPin" $WARN
-        /opt/piget/leds/bin/blink $ledPin 100 2
+        /opt/piget/led/bin/blink $ledPin 100 2
 else
         errorBox "Choose a WpI pin"
         gpio readall
