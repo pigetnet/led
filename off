@@ -3,9 +3,9 @@
 ledPin=$1
 if [ $# -eq 1 ];then
         /show/listecho "Turn off LED $ledPin" $ERR
-        /opt/piget/led/bin/onoff $ledPin 0
+        /do/led/python/onoff.py $ledPin 0
 else
-        /show/errorBox "Choose a WpI pin"
+        /show/errorBox "Choose a bcm pin"
         gpio readall
         exit 1
 fi

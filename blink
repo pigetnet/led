@@ -2,11 +2,17 @@
 ledPin=$1
 if [ $# -eq 1 ];then
         /show/colecho "Blink LED $ledPin" $WARN
-        /opt/piget/led/bin/blink $ledPin 100 2
+        /do/led/python/blink.py $ledPin 3 0.1
 else
-        /show/errorBox "Choose a WpI pin"
-        gpio readall
-        exit 1
+	if [ $# -eq 3 ];then
+	loopUntil=$2
+	speed=$3
+	/do/led/python/blink.py $ledPin $loopUntil $speed
+	else
+	        /show/errorBox "Choose a BCM pin"
+	        gpio readall
+        	exit 1
+	fi
 fi
 
 

@@ -1,0 +1,2 @@
+#!/bin/bash
+/do/led/python/onoff.py $@
