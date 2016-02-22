@@ -1,0 +1,17 @@
+#!/bin/bash
+ledPin=$1
+if [ $# -eq 1 ];then
+        /show/colecho "PWM LED $ledPin" $WARN
+        /do/led/python/pwm.py $ledPin 2
+else
+	if [ $# -eq 2 ];then
+	speed=$2
+	/do/led/python/pwm.py $ledPin $speed
+	else
+	        /show/errorBox "Choose a BCM pin"
+	        gpio readall
+        	exit 1
+	fi
+fi
+
+
