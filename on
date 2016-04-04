@@ -1,10 +1,19 @@
 #!/bin/bash
-ledPin=$1
-if [ $# -eq 1 ];then
-	/show/listecho "Turn on LED $ledPin" $OK
-	/do/led/python/onoff.py $ledPin 1
-else
-	/show/gpio
-	/show/errorBox "Choose a pin"
-	exit 1
+if [ $# -ge 2 ] || [[ $1 == "--help" ]] || [ $(id -u) -ne 0 ];then
+		/show/messagebox "$0"
+		/show/info "[beta] [gpio] [led] [electronics]"
+		/show/usageDescription "Turn off a led"
+		/show/usage "$0 pin"
+		/show/example "$0 21"
+		exit 1
+else	
+		if [ $# -eq 1 ];then
+			ledPin=$1
+		    /show/listecho "Turn off LED $ledPin" $ERR
+		    /do/led/python/onoff.py $ledPin 1
+		else
+			/show/gpio
+		    /show/listecho "Could you tell me where the led is plugged ?" $WARN
+			exit 314
+		fi
 fi
