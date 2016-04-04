@@ -5,8 +5,8 @@ if [ $# -eq 1 ];then
         /show/listecho "Turn off LED $ledPin" $ERR
         /do/led/python/onoff.py $ledPin 0
 else
-        /show/errorBox "Choose a bcm pin"
-        gpio readall
+	    /show/gpio
+	    /show/errorBox "Choose a pin"
         exit 1
 fi
 

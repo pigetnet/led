@@ -8,8 +8,8 @@ else
 	speed=$2
 	/do/led/python/pulse.py $ledPin $speed
 	else
-	        /show/errorBox "Choose a BCM pin"
-	        gpio readall
+	        /show/gpio
+	        /show/errorBox "Choose a pin"
         	exit 1
 	fi
 fi

@@ -9,8 +9,9 @@ else
 	speed=$3
 	/do/led/python/blink.py $ledPin $loopUntil $speed
 	else
-	        /show/errorBox "Choose a BCM pin"
-	        gpio readall
+	        
+	        /show/gpio
+	        /show/errorBox "Choose a pin"
         	exit 1
 	fi
 fi
