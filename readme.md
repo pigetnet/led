@@ -3,7 +3,7 @@
 | Description     | Blink a led                                                   |
 | Example         | /do/led/blink 21 or /do/led/blink 21 3 /do/led/blink 21 3 0.1 |
 | Info            | [beta] [gpio] [led] [electronics]                             |
-| Arguments       | 1:ledPin, 2:loopUntil, 2:loopUntil, 3:speed,                  |
+| Arguments       | 1:ledPin, 2:loopUntil, 3:speed                                |
 
 | /do/led/install   |                                   |
 |:------------------|:----------------------------------|
@@ -19,7 +19,7 @@
 
 | /do/led/on   |                                   |
 |:-------------|:----------------------------------|
-| Description  | Turn off a led                    |
+| Description  | Turn on a led                    |
 | Example      | /do/led/on 21                     |
 | Info         | [beta] [gpio] [led] [electronics] |
 | Arguments    | 1:ledPin,                         |
