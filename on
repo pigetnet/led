@@ -2,7 +2,7 @@
 if [ $# -ge 2 ] || [[ $1 == "--help" ]] || [ $(id -u) -ne 0 ];then
 		/show/messagebox "$0"
 		/show/info "[beta] [gpio] [led] [electronics]"
-		/show/usageDescription "Turn off a led"
+		/show/usageDescription "Turn on a led"
 		/show/usage "$0 pin"
 		/show/example "$0 21"
 		exit 1
