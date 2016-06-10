@@ -1,21 +1,29 @@
 #!/bin/bash
 #Turn a led off
 if [ $# -ge 2 ] || [[ $1 == "--help" ]] || [ $(id -u) -ne 0 ];then
-		/show/messagebox "$0"
-		/show/info "[beta] [gpio] [led] [electronics]"
-		/show/usageDescription "Turn off a led"
-		/show/usage "$0 pin"
-		/show/example "$0 21"
-		exit 1
+	/show/messagebox "$0"
+	/show/info "[beta] [gpio] [led] [electronics] [orangepi]"
+	/show/usageDescription "Turn off a led"
+	/show/usage "$0 pin"
+	/show/example "$0 21"
+	exit 1
 else	
-		if [ $# -eq 1 ];then
-			ledPin=$1
-		    /show/listecho "Turn off LED $ledPin" $ERR
-		    /do/led/python/onoff.py $ledPin 0
+
+	hardware=$(/pi/getBoard)
+
+	if [ $# -eq 1 ];then
+		ledPin=$1
+		/show/listecho "Turn off LED $ledPin" $ERR
+		if [[ $hardware == "orangepi" ]];then
+			ledPin=$(/system/h3ToBcm $ledPin)
+			/do/led/python/onoff_orange.py $ledPin 0 #Turn on led
 		else
-			/show/gpio
-		    /show/listecho "Could you tell me where the led is plugged ?" $WARN
-			exit 314
+			/do/led/python/onoff.py $ledPin 0
 		fi
+	else
+		/show/gpio
+		/show/listecho "Could you tell me where the led is plugged ?" $WARN
+		exit 314
+	fi
 fi
 

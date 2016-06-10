@@ -1,12 +1,15 @@
 #!/bin/bash
 if [ $# -ge 3 ] || [[ $1 == "--help" ]] || [ $(id -u) -ne 0 ];then
 		/show/messagebox "$0"
-		/show/info "[beta] [gpio] [led] [electronics]"
+		/show/info "[beta] [gpio] [led] [electronics] [orangepi]"
 		/show/usageDescription "Software PWM with led"
 		/show/usage "$0 pin or $0 pin speed"
 		/show/example "$0 21 or $0 21 1"
 		exit 1
 else
+
+	hardware=$(/pi/getBoard)
+
 		if [ $# -eq 0 ];then
 			/show/gpio
 		    /show/listecho "Could you tell me where the led is plugged ?" $WARN
@@ -16,13 +19,18 @@ else
 				
 				if [ $# -eq 1 ];then
 					speed=1
-        			/show/colecho "Pulse LED $ledPin" $WARN
+        			
 				fi
 
 				if [ $# -eq 2 ];then
 					speed=$2
 				fi
-
-				/do/led/python/pulse.py $ledPin $speed		
+			
+				if [[ $hardware == "orangepi" ]];then
+		    		/show/colecho "Sorry software PWM is not supported on an Orange Pi" $ERR
+		    	else
+		    		/show/colecho "Pulse LED $ledPin" $WARN
+					/do/led/python/pulse.py $ledPin $speed		
+				fi
 		fi
 fi

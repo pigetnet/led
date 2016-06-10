@@ -1,13 +1,15 @@
 #!/bin/bash
 if [ $# -ge 4 ] || [[ $1 == "--help" ]] || [ $(id -u) -ne 0 ];then
 		/show/messagebox "$0"
-		/show/info "[beta] [gpio] [led] [electronics]"
+		/show/info "[beta] [gpio] [led] [electronics] [orangepi]"
 		/show/usageDescription "Blink a led"
 		/show/usage "$0 pin or $0 pin number_of_times or $0 pin number_of_times speed (in s)"
 		/show/example "$0 21 or $0 21 3 $0 21 3 0.1"
 		exit 1
 else
 	
+	hardware=$(/pi/getBoard)
+
 	if [ $# -eq 0 ];then
 		/show/gpio
 		/show/listecho "Could you tell me where the led is plugged ?" $WARN
@@ -33,8 +35,13 @@ else
 				speed=$3
 			fi
 
-		    /show/colecho "Blink LED $ledPin" $WARN
-		    /do/led/python/blink.py $ledPin $loopUntil $speed
+			/show/colecho "Blink LED $ledPin" $WARN
+			if [[ $hardware == "orangepi" ]];then
+		    	ledPin=$(/system/h3ToBcm $ledPin)
+		    	/do/led/python/blink_orange.py $ledPin $loopUntil $speed
+		    else
+			    /do/led/python/blink.py $ledPin $loopUntil $speed
+			fi
 	fi
 fi
 

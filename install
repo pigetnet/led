@@ -8,4 +8,17 @@ if [ $# -ne 0 ] || [[ $1 == "--help" ]] || [ $(id -u) -ne 0 ];then
 else
 		/show/description "[LED] Install"
 		/system/installWiringPi
+
+		hardware=$(/pi/getBoard)
+		if [[ $hardware == "orangepi" ]];then
+			/show/listecho "Install alternative to Rpi.GPIO" $OK
+			if [ ! -d /opt/gpio_pyH3 ];then
+				git clone https://github.com/duxingkei33/orangepi_PC_gpio_pyH3 /opt/gpio_pyH3
+			else
+				cd /opt/gpio_pyH3;git pull
+			fi
+			/system/install python-dev
+			cd /opt/gpio_pyH3;python setup.py install > /tmp/gpio_pyH3_install.log
+		fi
+
 fi
