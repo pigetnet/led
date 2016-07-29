@@ -61,6 +61,10 @@
 | 2. Sorry software PWM is not supported on an Orange Pi |                                                |
 | 3. Pulse LED $ledPin                                   |                                                |
 
+| /do/led/README.MD   |                        |
+|:--------------------|:-----------------------|
+| Info                | [alpha] [undocumented] |
+
 | /do/led/state                                   |                                   |
 |:------------------------------------------------|:----------------------------------|
 | Info                                            | [beta] [gpio] [led] [electronics] |
