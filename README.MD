@@ -50,7 +50,7 @@ Here is a list of commands
 * Display gpio: /show/gpio
 
 ## Advanced commands
-You can use additional arguments on some commands.
+You can use additional arguments on some commands.   
 /do/led/blink
 ````
 /do/led/blink   pin    number_of_blink
