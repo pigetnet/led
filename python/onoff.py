@@ -23,7 +23,6 @@ if len(sys.argv) == 3:
         # Setup LED as OUTPUT
         # Clean state (this will turn off the led)
         GPIO.setup(ledPin, GPIO.OUT)
-        GPIO.cleanup()
-
+	GPIO.output(ledPin, False)       
 else:
     print "usage:onoff.py pin state"
